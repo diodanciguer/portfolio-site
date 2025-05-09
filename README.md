@@ -22,7 +22,7 @@ Site de portfólio pessoal desenvolvido com React, Next.js e Material-UI.
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/danciguer/portfolio-site.git
+   git clone https://github.com/diodanciguer/portfolio-site.git
    cd portfolio-site
    ```
 
@@ -50,24 +50,19 @@ Site de portfólio pessoal desenvolvido com React, Next.js e Material-UI.
 
 ### Configuração Inicial do Servidor
 
-1. Conecte-se ao servidor via SSH:
+1. Crie o diretório para o site:
    ```bash
-   ssh diego@177.94.21.5
+   sudo mkdir -p /var/www/seu-dominio.com
+   sudo chown $USER:$USER /var/www/seu-dominio.com
    ```
 
-2. Crie o diretório para o site:
+2. Clone o repositório:
    ```bash
-   sudo mkdir -p /var/www/danciguer.com.br
-   sudo chown diego:diego /var/www/danciguer.com.br
+   cd /var/www/seu-dominio.com
+   git clone https://github.com/diodanciguer/portfolio-site.git .
    ```
 
-3. Clone o repositório:
-   ```bash
-   cd /var/www/danciguer.com.br
-   git clone https://github.com/danciguer/portfolio-site.git .
-   ```
-
-4. Execute o script de configuração:
+3. Execute o script de configuração:
    ```bash
    chmod +x server-setup.sh
    ./server-setup.sh
@@ -78,9 +73,10 @@ Site de portfólio pessoal desenvolvido com React, Next.js e Material-UI.
 O projeto está configurado para fazer deploy automático quando houver push na branch `main`. Para configurar:
 
 1. No GitHub, vá para o repositório > Settings > Secrets and variables > Actions
-2. Adicione um novo secret:
+2. Adicione novos secrets:
    - Nome: `SSH_PRIVATE_KEY`
-   - Valor: Sua chave SSH privada (conteúdo do arquivo `~/.ssh/id_rsa`)
+   - Nome: `HOST`
+   - Nome: `USERNAME`
 
 Após configurar, cada push para a branch `main` irá:
 1. Construir o projeto
@@ -109,30 +105,6 @@ portfolio-frontend/
 
 - Node.js (v18 ou superior)
 - npm ou yarn
-
-## Instalação e Execução Local
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/danciguer-site.git
-   cd danciguer-site/portfolio-frontend
-   ```
-
-2. Instale as dependências:
-   ```bash
-   npm install
-   # ou
-   yarn install
-   ```
-
-3. Execute o servidor de desenvolvimento:
-   ```bash
-   npm run dev
-   # ou
-   yarn dev
-   ```
-
-4. Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 ## Build para Produção
 
@@ -172,8 +144,8 @@ yarn start
 
 2. Clone o repositório no servidor:
    ```bash
-   git clone https://github.com/seu-usuario/danciguer-site.git
-   cd danciguer-site/portfolio-frontend
+   git clone https://github.com/diodanciguer/portfolio-site.git
+   cd portfolio-site
    ```
 
 3. Instale as dependências e faça o build:
@@ -191,14 +163,14 @@ yarn start
 
 5. Configure o Nginx:
    ```bash
-   sudo nano /etc/nginx/sites-available/danciguer.com.br
+   sudo nano /etc/nginx/sites-available/seu-dominio.com
    ```
 
    Adicione a seguinte configuração:
    ```nginx
    server {
        listen 80;
-       server_name danciguer.com.br www.danciguer.com.br;
+       server_name seu-dominio.com www.seu-dominio.com;
 
        location / {
            proxy_pass http://localhost:3000;
@@ -213,7 +185,7 @@ yarn start
 
 6. Ative o site e reinicie o Nginx:
    ```bash
-   sudo ln -s /etc/nginx/sites-available/danciguer.com.br /etc/nginx/sites-enabled/
+   sudo ln -s /etc/nginx/sites-available/seu-dominio.com /etc/nginx/sites-enabled/
    sudo nginx -t
    sudo systemctl restart nginx
    ```
@@ -221,7 +193,7 @@ yarn start
 7. Configure o SSL com Certbot:
    ```bash
    sudo apt install -y certbot python3-certbot-nginx
-   sudo certbot --nginx -d danciguer.com.br -d www.danciguer.com.br
+   sudo certbot --nginx -d seu-dominio.com -d www.seu-dominio.com
    ```
 
 ## CI/CD com GitHub Actions
