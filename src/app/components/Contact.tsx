@@ -108,7 +108,7 @@ export default function Contact() {
       } else {
         throw new Error('Falha ao enviar mensagem');
       }
-    } catch (error) {
+    } catch {
       setSnackbar({
         open: true,
         message: 'Erro ao enviar mensagem. Tente novamente mais tarde.',
