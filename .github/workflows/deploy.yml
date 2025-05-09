@@ -3,21 +3,34 @@ name: Deploy to VPS
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: SSH and deploy
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build
+        run: npm run build
+      
+      - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
+          host: 177.94.21.5
+          username: diego
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /path/to/danciguer-site/portfolio-frontend
+            cd /var/www/danciguer.com.br
             git pull
-            npm install
+            npm ci
             npm run build
             pm2 restart portfolio 
