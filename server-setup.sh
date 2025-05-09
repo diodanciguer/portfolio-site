@@ -47,7 +47,7 @@ sudo systemctl restart nginx
 
 # Configurar PM2 para iniciar com o sistema
 pm2 startup
-sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u diego --hp /home/diego
+sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u $USER --hp $HOME
 
 # Iniciar a aplicação com PM2
 cd /var/www/danciguer.com.br
