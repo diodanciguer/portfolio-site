@@ -1,0 +1,23 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH and deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /path/to/danciguer-site/portfolio-frontend
+            git pull
+            npm install
+            npm run build
+            pm2 restart portfolio 
