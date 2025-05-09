@@ -1,37 +1,108 @@
-# Portfólio Pessoal - Diego Danciguer
+# Portfólio de Diego Danciguer
 
-Este é o código-fonte do site de portfólio pessoal de Diego Danciguer, desenvolvido com React, Next.js e Material-UI.
+Site de portfólio pessoal desenvolvido com React, Next.js e Material-UI.
 
 ## Tecnologias Utilizadas
 
-- **Next.js**: Framework React com SSR/SSG e roteamento automático
-- **React**: Biblioteca JavaScript para construção de interfaces
-- **Material-UI (MUI)**: Biblioteca de componentes React
-- **Emotion**: Biblioteca para estilização de componentes
-- **Framer Motion**: Biblioteca para animações
-- **TypeScript**: Superset tipado de JavaScript
+- React 19
+- Next.js 15
+- Material-UI 7
+- Framer Motion
+- TypeScript
+
+## Funcionalidades
+
+- Design responsivo
+- Tema claro/escuro
+- Animações suaves
+- Seções: Hero, Sobre, Projetos, Contato
+- Formulário de contato com validação
+
+## Como Executar Localmente
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/danciguer/portfolio-site.git
+   cd portfolio-site
+   ```
+
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+3. Execute o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+
+4. Acesse `http://localhost:3000` no navegador.
+
+## Deploy no Servidor
+
+### Pré-requisitos
+
+- Servidor Ubuntu
+- Node.js 20+
+- Nginx
+- PM2
+- Domínio configurado para apontar para o servidor
+
+### Configuração Inicial do Servidor
+
+1. Conecte-se ao servidor via SSH:
+   ```bash
+   ssh diego@177.94.21.5
+   ```
+
+2. Crie o diretório para o site:
+   ```bash
+   sudo mkdir -p /var/www/danciguer.com.br
+   sudo chown diego:diego /var/www/danciguer.com.br
+   ```
+
+3. Clone o repositório:
+   ```bash
+   cd /var/www/danciguer.com.br
+   git clone https://github.com/danciguer/portfolio-site.git .
+   ```
+
+4. Execute o script de configuração:
+   ```bash
+   chmod +x server-setup.sh
+   ./server-setup.sh
+   ```
+
+### Deploy Automático com GitHub Actions
+
+O projeto está configurado para fazer deploy automático quando houver push na branch `main`. Para configurar:
+
+1. No GitHub, vá para o repositório > Settings > Secrets and variables > Actions
+2. Adicione um novo secret:
+   - Nome: `SSH_PRIVATE_KEY`
+   - Valor: Sua chave SSH privada (conteúdo do arquivo `~/.ssh/id_rsa`)
+
+Após configurar, cada push para a branch `main` irá:
+1. Construir o projeto
+2. Conectar ao servidor via SSH
+3. Atualizar o código
+4. Reiniciar a aplicação
 
 ## Estrutura do Projeto
 
 ```
 portfolio-frontend/
-├── public/              # Arquivos estáticos
-│   ├── projects/        # Imagens dos projetos
+├── public/             # Arquivos estáticos
+│   ├── images/         # Imagens
 │   └── ...
 ├── src/
-│   ├── app/             # Diretório principal da aplicação
-│   │   ├── components/  # Componentes reutilizáveis
-│   │   ├── privacidade/ # Página de política de privacidade
-│   │   ├── globals.css  # Estilos globais
-│   │   ├── layout.tsx   # Layout principal da aplicação
-│   │   ├── page.tsx     # Página inicial
-│   │   └── theme.ts     # Configuração do tema MUI
+│   ├── app/            # Componentes da aplicação
+│   │   ├── components/ # Componentes reutilizáveis
+│   │   ├── theme.ts    # Configuração do tema
+│   │   └── ...
 │   └── ...
-├── .gitignore
-├── next.config.ts
-├── package.json
-├── tsconfig.json
-└── README.md
+├── .github/workflows/  # Configurações de CI/CD
+└── ...
 ```
 
 ## Pré-requisitos
