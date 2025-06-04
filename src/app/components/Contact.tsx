@@ -14,6 +14,8 @@ import {
 import SendIcon from '@mui/icons-material/Send';
 import { motion } from 'framer-motion';
 
+const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+
 type FormState = {
   name: string;
   email: string;
@@ -74,17 +76,26 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
-    
+
+    if (!formspreeId) {
+      setSnackbar({
+        open: true,
+        message: 'Formspree ID n\u00e3o configurado',
+        severity: 'error',
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
-      // Aqui você pode integrar com um serviço como Formspree ou sua própria API
+      // Aqui você pode integrar com um servi\u00e7o como Formspree ou sua pr\u00f3pria API
       // Exemplo com Formspree:
-      const response = await fetch('https://formspree.io/f/seu-formulario-id', {
+      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
