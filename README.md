@@ -38,6 +38,14 @@ Site de portfólio pessoal desenvolvido com React, Next.js e Material-UI.
 
 4. Acesse `http://localhost:3000` no navegador.
 
+## Testes
+
+Para rodar os testes da aplicação:
+
+```bash
+npm test
+```
+
 ## Deploy no Servidor
 
 ### Pré-requisitos
