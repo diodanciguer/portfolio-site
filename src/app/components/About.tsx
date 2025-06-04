@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Button, Chip, Container, Grid, Paper, Typography } from '@mui/material';
+import { Box, Button, Chip, Container, Paper, Typography } from '@mui/material';
 import DownloadIcon from '@mui/icons-material/Download';
 import { motion } from 'framer-motion';
 
