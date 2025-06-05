@@ -87,7 +87,7 @@ export default function Footer() {
               <IconButton 
                 aria-label="LinkedIn" 
                 color="inherit" 
-                href="https://linkedin.com/in/diegodanciguer" 
+                href="https://linkedin.com/in/diego-danciguer-81153218a/" 
                 target="_blank"
                 sx={{ 
                   bgcolor: 'background.default',
