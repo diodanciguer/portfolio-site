@@ -88,7 +88,7 @@ export default function PrivacyPolicy() {
             </Typography>
             <Typography paragraph>
               Se você tiver dúvidas sobre esta política de privacidade, entre em contato através do e-mail:
-              contato@danciguer.com.br
+              diego@danciguer.com.br
             </Typography>
           </Box>
         </Container>

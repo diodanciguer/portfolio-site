@@ -123,7 +123,7 @@ export default function Footer() {
               <IconButton 
                 aria-label="Email" 
                 color="inherit" 
-                href="mailto:contato@danciguer.com.br"
+                href="mailto:diego@danciguer.com.br"
                 sx={{ 
                   bgcolor: 'background.default',
                   '&:hover': {
