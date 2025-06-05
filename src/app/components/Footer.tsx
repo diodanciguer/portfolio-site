@@ -69,7 +69,7 @@ export default function Footer() {
               <IconButton 
                 aria-label="GitHub" 
                 color="inherit" 
-                href="https://github.com/username" 
+                href="https://github.com/diodanciguer" 
                 target="_blank"
                 sx={{ 
                   bgcolor: 'background.default',
@@ -87,7 +87,7 @@ export default function Footer() {
               <IconButton 
                 aria-label="LinkedIn" 
                 color="inherit" 
-                href="https://linkedin.com/in/username" 
+                href="https://linkedin.com/in/diegodanciguer" 
                 target="_blank"
                 sx={{ 
                   bgcolor: 'background.default',
